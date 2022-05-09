@@ -8,18 +8,18 @@ export const Navbar: React.FC<INavbar> = ({ title }) => {
       <div className="nav_container">
         <div className="__navbar">
           <FaGithub className="github_icon" />
-          {/* <Link to="/" className="title">
+          <Link to="/" className="title">
             {title}
-          </Link> */}
+          </Link>
         </div>
 
         <div className="home_about">
-          {/* <Link to="/" className="btn-ghost">
-            HOME
-          </Link>
-          <Link to="/about" className="btn-ghost">
-              ABOUT
-          </Link> */}
+          <Link to="/" className="btn-ghost">
+             HOME
+           </Link>
+           <Link to="/about" className="btn-ghost">
+               ABOUT
+           </Link>
         </div>
       </div>
     </nav>
