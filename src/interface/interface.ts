@@ -7,3 +7,12 @@ export interface INavbar {
 }
 
 
+export interface IUser{
+  login:string,
+  avatar_url:string,
+}
+
+// export interface ILoginAvatar{
+//   login:string,
+//   avatar_url:string,
+// }
