@@ -1,6 +1,9 @@
-import { IChildren } from "../../interface/interface"
 import spinner from "./assets/spinner.gif"
 
-export const Spinner: React.FC<IChildren> = () => {
-  return <div className="spinner">{spinner}</div>
+export const Spinner = () => {
+  return (
+    <div className="spinner">
+      <img src={spinner} alt="Loading..." width={180} className="loading" />
+    </div>
+  )
 }

@@ -1,16 +1,19 @@
 import { useState, useEffect } from "react"
 import { API } from "../../axios"
 import { UserItem } from "./UserItem"
+import { Spinner } from "../layouts/Spinner"
 
 export const UserResults = () => {
   const [users, setUsers] = useState([])
+  const [loading, setLoading] = useState(true)
 
   const fetchUsers = async () => {
     try {
       const response = await API.get("/users")
       const data = response.data
       setUsers(data)
-      return data
+      setLoading(false)
+      //return data
     } catch (err) {
       console.log(err)
     }
@@ -19,13 +22,20 @@ export const UserResults = () => {
   useEffect(() => {
     fetchUsers()
   }, [])
-  return (
-    <div className="user-results">
-      {users.map((user: any) => (
-        <UserItem key={user.id} {...user} />
-      ))}
+
+  if (!loading) {
+    return (
+      <div className="user-results">
+        {users.map((user: any) => (
+          <UserItem key={user.id} {...user} />
+        ))}
+      </div>
+    )
+  } else {
+    return <div className="">
+      <Spinner />
     </div>
-  )
+  }
 }
 
 //   const fetchUsers = async () => {
