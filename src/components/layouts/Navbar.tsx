@@ -2,7 +2,7 @@ import { FaGithub } from "react-icons/fa"
 import { Link } from "react-router-dom"
 import { INavbar } from "../../interface/interface"
 
-export const Navbar: React.FC<INavbar> = ({ title }) => {
+const Navbar: React.FC<INavbar> = ({ title }) => {
   return (
     <nav className="navbar">
       <div className="nav_container">
@@ -25,3 +25,5 @@ export const Navbar: React.FC<INavbar> = ({ title }) => {
     </nav>
   )
 }
+
+export default  Navbar

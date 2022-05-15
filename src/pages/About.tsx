@@ -1,4 +1,4 @@
-export const About = () => {
+const About = () => {
     return (
       <>
         <h1 className="about_title">Github Finder</h1>
@@ -40,3 +40,5 @@ export const About = () => {
       </>
     )
 }
+
+export default About
