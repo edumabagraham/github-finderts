@@ -1,6 +1,6 @@
 import { IChildren } from "../../interface/interface"
 
-export const Footer: React.FC<IChildren> = () => {
+const Footer: React.FC<IChildren> = () => {
   const footerYear = new Date().getFullYear()
   return (
     <footer>
@@ -22,3 +22,5 @@ export const Footer: React.FC<IChildren> = () => {
     </footer>
   )
 }
+
+export default Footer
