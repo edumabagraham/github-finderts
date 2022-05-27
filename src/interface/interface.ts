@@ -12,7 +12,9 @@ export interface IUser{
   avatar_url:string,
 }
 
-// export interface ILoginAvatar{
-//   login:string,
-//   avatar_url:string,
-// }
+export interface IGithubContext {
+  users:Array<object>,
+  user?:object,
+  loading:boolean,
+  fetchUsers:() => void,
+}
