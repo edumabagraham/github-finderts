@@ -1,26 +1,34 @@
-import { createContext, useState } from "react"
-import { IChildren } from "../../interface/interface"
+import { createContext, useState,useReducer } from "react"
+import { IChildren,IGithubContext } from "../../interface/interface"
 import { API } from "../../axios"
+import githubReducer from "./GithubReducer"
 
-const defaultValues: object = {
+
+const defaultValues = {
   users: [],
-  user: {},
-  loading: false,
+  loading: true,
+  fetchUsers: () => {},
 }
-
-const GithubContext = createContext(defaultValues)
+const GithubContext = createContext<IGithubContext>(defaultValues)
 
 export const GithubProvider = ({ children }: IChildren) => {
-  const [users, setUsers] = useState([])
-  const [loading, setLoading] = useState(true)
+
+  const initialState = {
+    users:[],
+    loading:true,
+  }
+
+  const [state,dispatch] = useReducer(githubReducer,initialState)
 
   const fetchUsers = async () => {
     try {
       const response = await API.get("/users")
       const data = response.data
-      setUsers(data)
-      setLoading(false)
-      //return data
+
+      dispatch({
+        type: 'GET_USERS',
+        payload: data,
+      })
     } catch (err) {
       console.log(err)
     }
@@ -29,12 +37,14 @@ export const GithubProvider = ({ children }: IChildren) => {
   return (
     <GithubContext.Provider
       value={{
+        users:state.users,
+        loading:state.loading,
         fetchUsers,
-        users,
-        loading,
       }}
     >
       {children}
     </GithubContext.Provider>
   )
 }
+
+export default GithubContext

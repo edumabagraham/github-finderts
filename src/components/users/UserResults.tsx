@@ -1,28 +1,15 @@
-import { useState, useEffect } from "react"
-import { API } from "../../axios"
+import { useEffect, useContext } from "react"
 import { UserItem } from "./UserItem"
 import { Spinner } from "../layouts/Spinner"
-
+import GithubContext from "../../context/github/GithubContext"
 
 export const UserResults = () => {
-  const [users, setUsers] = useState([])
-  const [loading, setLoading] = useState(true)
-
-  const fetchUsers = async () => {
-    try {
-      const response = await API.get("/users")
-      const data = response.data
-      setUsers(data)
-      setLoading(false)
-      //return data
-    } catch (err) {
-      console.log(err)
-    }
-  }
+  const { users, loading,fetchUsers } = useContext(GithubContext)
 
   useEffect(() => {
     fetchUsers()
-  }, [])
+  },[])
+  
 
   if (!loading) {
     return (
@@ -33,9 +20,11 @@ export const UserResults = () => {
       </div>
     )
   } else {
-    return <div className="">
-      <Spinner />
-    </div>
+    return (
+      <div className="">
+        <Spinner />
+      </div>
+    )
   }
 }
 
