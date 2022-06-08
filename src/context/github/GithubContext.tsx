@@ -8,6 +8,7 @@ const defaultValues = {
   users: [],
   loading: true,
   fetchUsers: () => {},
+  searchUsers: () =>{},
 }
 const GithubContext = createContext<IGithubContext>(defaultValues)
 
@@ -34,12 +35,32 @@ export const GithubProvider = ({ children }: IChildren) => {
     }
   }
 
+  //Search users
+  const searchUsers = async (text: string) => {
+    try {
+      const params = new URLSearchParams({
+        q: text,
+      })
+
+      const response = await API.get(`/search/users?${params}`, {})
+      const { items } = await response.data
+      
+      dispatch({
+        type: "SEARCH_USER",
+        payload: items,
+      })
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
   return (
     <GithubContext.Provider
       value={{
         users:state.users,
         loading:state.loading,
         fetchUsers,
+        searchUsers,
       }}
     >
       {children}

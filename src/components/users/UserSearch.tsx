@@ -1,30 +1,22 @@
-import { useState } from "react"
-import { API } from '../../axios';
+import { useState,useContext} from "react"
+import GithubContext from "../../context/github/GithubContext"
 
 export const UserSearch = () => {
   const [text, setText] = useState("")
-  const searchUsers = async(text:string) => {
-    const params = new URLSearchParams({
-            q:text,
-    })
-
-    const response = await API.get(`/search/users?${params}`, {})
-    const {items} = await response.data
-    return items
-  }  
+  const {searchUsers} = useContext(GithubContext)
 
   const handleChange = (e: any) => {
     setText(e.target.value)
   }
 
-  const handleSubmit = (e:any) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault()
-    if(text === ""){
-        alert("Enter something")
-    }else{
-        //user search goes here
-        searchUsers(text)
-        setText("")
+    if (text === "") {
+      alert("Enter something")
+    } else {
+      //user search goes here
+      searchUsers(text)
+      setText("")
     }
   }
   return (

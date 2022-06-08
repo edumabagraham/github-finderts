@@ -6,6 +6,12 @@ const githubReducer = (state: any, action: { type: any,payload:any }) => {
                 users:action.payload,
                 loading:false,
             }
+        case 'SEARCH_USER':
+            return{
+                ...state,
+                users:action.payload,
+                loading:false,
+            }
         default:
             return state
     }

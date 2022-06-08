@@ -13,8 +13,9 @@ export interface IUser{
 }
 
 export interface IGithubContext {
-  users:Array<object>,
-  user?:object,
-  loading:boolean,
-  fetchUsers:() => void,
+  users: Array<object>
+  user?: object
+  loading: boolean
+  fetchUsers: () => void
+  searchUsers: (text: string) => any
 }
