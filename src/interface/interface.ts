@@ -18,4 +18,5 @@ export interface IGithubContext {
   loading: boolean
   fetchUsers: () => void
   searchUsers: (text: string) => any
+  clearUsers: () => any
 }

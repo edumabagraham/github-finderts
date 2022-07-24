@@ -1,9 +1,9 @@
-import { useState,useContext} from "react"
+import { useState, useContext } from "react"
 import GithubContext from "../../context/github/GithubContext"
 
 export const UserSearch = () => {
   const [text, setText] = useState("")
-  const {searchUsers} = useContext(GithubContext)
+  const { users, searchUsers,clearUsers } = useContext(GithubContext)
 
   const handleChange = (e: any) => {
     setText(e.target.value)
@@ -19,6 +19,8 @@ export const UserSearch = () => {
       setText("")
     }
   }
+  
+
   return (
     <div className="search-field">
       <form onSubmit={handleSubmit}>
@@ -34,16 +36,20 @@ export const UserSearch = () => {
           </button>
         </div>
       </form>
-      {/* {users.length > 0 && (
+      {users.length > 0 && (
         <div>
           <button
             className="clear-btn"
-            onClick={() => dispatch({ type: "CLEAR_USERS" })}
+            onClick={clearUsers}
           >
             Clear
           </button>
         </div>
-      )} */}
+      )}
     </div>
   )
 }
+
+
+
+

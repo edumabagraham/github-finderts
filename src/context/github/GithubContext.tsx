@@ -1,25 +1,24 @@
-import { createContext, useState,useReducer } from "react"
-import { IChildren,IGithubContext } from "../../interface/interface"
+import { createContext, useState, useReducer } from "react"
+import { IChildren, IGithubContext } from "../../interface/interface"
 import { API } from "../../axios"
 import githubReducer from "./GithubReducer"
-
 
 const defaultValues = {
   users: [],
   loading: true,
   fetchUsers: () => {},
-  searchUsers: () =>{},
+  searchUsers: () => {},
+  clearUsers: () => {},
 }
 const GithubContext = createContext<IGithubContext>(defaultValues)
 
 export const GithubProvider = ({ children }: IChildren) => {
-
   const initialState = {
-    users:[],
-    loading:true,
+    users: [],
+    loading: false,
   }
 
-  const [state,dispatch] = useReducer(githubReducer,initialState)
+  const [state, dispatch] = useReducer(githubReducer, initialState)
 
   const fetchUsers = async () => {
     try {
@@ -27,7 +26,7 @@ export const GithubProvider = ({ children }: IChildren) => {
       const data = response.data
 
       dispatch({
-        type: 'GET_USERS',
+        type: "GET_USERS",
         payload: data,
       })
     } catch (err) {
@@ -44,7 +43,7 @@ export const GithubProvider = ({ children }: IChildren) => {
 
       const response = await API.get(`/search/users?${params}`, {})
       const { items } = await response.data
-      
+
       dispatch({
         type: "SEARCH_USER",
         payload: items,
@@ -54,13 +53,21 @@ export const GithubProvider = ({ children }: IChildren) => {
     }
   }
 
+  //Clear users
+  const clearUsers = () => {
+    dispatch({
+      type: "CLEAR_USERS",
+      payload: [],
+    })
+  }
   return (
     <GithubContext.Provider
       value={{
-        users:state.users,
-        loading:state.loading,
+        users: state.users,
+        loading: state.loading,
         fetchUsers,
         searchUsers,
+        clearUsers,
       }}
     >
       {children}
