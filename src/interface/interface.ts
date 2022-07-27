@@ -18,5 +18,10 @@ export interface IGithubContext {
   loading: boolean
   fetchUsers: () => void
   searchUsers: (text: string) => any
-  clearUsers: () => any
+  clearUsers: () => void
+}
+
+export interface IAlertContext {
+  alert: any
+  setAlert: (msg: string, type: string) => void
 }

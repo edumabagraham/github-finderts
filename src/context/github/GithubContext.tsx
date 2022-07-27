@@ -1,4 +1,4 @@
-import { createContext, useState, useReducer } from "react"
+import { createContext, useReducer } from "react"
 import { IChildren, IGithubContext } from "../../interface/interface"
 import { API } from "../../axios"
 import githubReducer from "./GithubReducer"
@@ -15,7 +15,7 @@ const GithubContext = createContext<IGithubContext>(defaultValues)
 export const GithubProvider = ({ children }: IChildren) => {
   const initialState = {
     users: [],
-    loading: false,
+    loading: true,
   }
 
   const [state, dispatch] = useReducer(githubReducer, initialState)

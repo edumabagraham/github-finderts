@@ -5,7 +5,7 @@ import GithubContext from "../../context/github/GithubContext"
 
 export const UserResults = () => {
   const { users, loading } = useContext(GithubContext)
-  if (!loading) {
+  if (loading) {
     return (
       <div className="user-results">
         {users.map((user: any) => (
@@ -15,7 +15,7 @@ export const UserResults = () => {
     )
   } else {
     return (
-      <div className="">
+      <div>
         <Spinner />
       </div>
     )

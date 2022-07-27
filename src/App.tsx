@@ -6,26 +6,29 @@ import NotFound from "./pages/NotFound"
 import About from "./pages/About"
 import Home from "./pages/Home"
 import { GithubProvider } from "./context/github/GithubContext"
+import { AlertProvider } from "./context/alert/AlertContext"
 
 export const App: React.FC<{}> = (props) => {
   return (
     <GithubProvider>
-      <Router>
-        <div className="container">
-          <Navbar title="Github Finder" />
-          <div className="content_container">
-            <main>
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/notfound" element={<NotFound />} />
-                <Route path="/*" element={<NotFound />} />
-              </Routes>
-            </main>
+      <AlertProvider>
+        <Router>
+          <div className="container">
+            <Navbar title="Github Finder" />
+            <div className="content_container">
+              <main>
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/about" element={<About />} />
+                  <Route path="/notfound" element={<NotFound />} />
+                  <Route path="/*" element={<NotFound />} />
+                </Routes>
+              </main>
+            </div>
+            <Footer />
           </div>
-          <Footer />
-        </div>
-      </Router>
+        </Router>
+      </AlertProvider>
     </GithubProvider>
   )
 }

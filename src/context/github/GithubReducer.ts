@@ -1,4 +1,4 @@
-const githubReducer = (state: any, action: { type: any,payload:any }) => {
+const githubReducer = (state: any, action: { type: string,payload:object }) => {
     switch (action.type) {
       case "GET_USERS":
         return {
@@ -10,7 +10,7 @@ const githubReducer = (state: any, action: { type: any,payload:any }) => {
         return {
           ...state,
           users: action.payload,
-          loading: false,
+          loading: true,
         }
       case "CLEAR_USERS":
         return {
