@@ -4,8 +4,11 @@ import { Spinner } from "../layouts/Spinner"
 import GithubContext from "../../context/github/GithubContext"
 
 export const UserResults = () => {
-  const { users, loading } = useContext(GithubContext)
-  if (loading) {
+  const { users, loading,user } = useContext(GithubContext)
+  useEffect(()=>{
+console.log(user);
+  },)
+  if (!loading) {
     return (
       <div className="user-results">
         {users.map((user: any) => (

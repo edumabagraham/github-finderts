@@ -7,6 +7,7 @@ import About from "./pages/About"
 import Home from "./pages/Home"
 import { GithubProvider } from "./context/github/GithubContext"
 import { AlertProvider } from "./context/alert/AlertContext"
+import { User } from './pages/User';
 
 export const App: React.FC<{}> = (props) => {
   return (
@@ -19,6 +20,7 @@ export const App: React.FC<{}> = (props) => {
               <main>
                 <Routes>
                   <Route path="/" element={<Home />} />
+                  <Route path = "/user/:login" element = {<User/>}/>
                   <Route path="/about" element={<About />} />
                   <Route path="/notfound" element={<NotFound />} />
                   <Route path="/*" element={<NotFound />} />

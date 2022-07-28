@@ -14,11 +14,14 @@ export interface IUser{
 
 export interface IGithubContext {
   users: Array<object>
-  user?: object
+  user: any
   loading: boolean
   fetchUsers: () => void
   searchUsers: (text: string) => any
+  getSingleUser: (login: string) => any
+  getUserRepos:(login:string) => any
   clearUsers: () => void
+  setLoading: () => void
 }
 
 export interface IAlertContext {
