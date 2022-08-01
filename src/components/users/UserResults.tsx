@@ -4,9 +4,8 @@ import { Spinner } from "../layouts/Spinner"
 import GithubContext from "../../context/github/GithubContext"
 
 export const UserResults = () => {
-  const { users, loading,user } = useContext(GithubContext)
+  const { users, loading } = useContext(GithubContext)
   useEffect(()=>{
-console.log(user);
   },)
   if (!loading) {
     return (
