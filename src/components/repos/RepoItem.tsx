@@ -16,7 +16,7 @@ export const RepoItem = ({ repo }: IRepoItem) => {
     <div className="repo--container">
       <div className="repo--container__body">
         <h3 className="repo--container__body__namelink">
-          <a href={html_url} className="linkDeco linkColor">
+          <a href={html_url} target="_blank" rel = "noreferrer"className="linkDeco linkColor">
             <FaLink className="repo--container__body__linkicon" />
             {name}
           </a>
