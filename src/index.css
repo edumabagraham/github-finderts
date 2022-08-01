@@ -763,6 +763,9 @@ color: rgb(245, 229, 7);
 .linkDeco {
   text-decoration: none;
 }
+.linkDeco:hover{
+  text-decoration: underline;
+}
 
 .profilePicContainer {
   /* width: 20%; */

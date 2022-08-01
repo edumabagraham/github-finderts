@@ -4,13 +4,15 @@ import { useContext, useEffect } from "react"
 import GithubContext from "../context/github/GithubContext"
 import { useParams } from "react-router-dom"
 import { Spinner } from "../components/layouts/Spinner"
+import { RepoList } from "../components/repos/RepoList"
 
 export const User = () => {
-  const { user, loading, getSingleUser, setLoading } = useContext(GithubContext)
+  const { user, loading, getSingleUser, setLoading,getUserRepos,repos } = useContext(GithubContext)
   const params = useParams()
 
   useEffect(() => {
     getSingleUser(params.login!) //the ! sign used here tells ts that even though the argument looks like it could be undefined, it can trust you that it's not
+    getUserRepos(params.login!)
   }, [])
 
   const {
@@ -150,6 +152,7 @@ export const User = () => {
             <div className="stat--figure__number">{public_gists}</div>
           </div>
         </div>
+        <RepoList repos = {repos}/>
       </div>
     </>
   )

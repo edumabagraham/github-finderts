@@ -8,6 +8,7 @@ const defaultValues = {
   users: [],
   loading: false,
   user:{},
+  repos:[],
   fetchUsers: () => {},
   searchUsers: () => {},
   getSingleUser: () => {},
@@ -22,6 +23,7 @@ export const GithubProvider = ({ children }: IChildren) => {
   const initialState = {
     users: [],
     user: {},
+    repos:[],
     loading: false,
   }
 
@@ -86,12 +88,12 @@ export const GithubProvider = ({ children }: IChildren) => {
   //Get User's repos
   const getUserRepos = async (login:string) => {
     setLoading()
-    const params = new URLSearchParams({
-      // sort: "created",
-      // per_page: 10,
-    })
+    // const params = new URLSearchParams({
+    //   sort: "created",
+    //   per_page: 10,
+    // })
 
-    const response = await API.get(`/users/${login}/repos?${params}`, {})
+    const response = await API.get(`/users/${login}/repos`, {})
     const data = await response.data
     dispatch({
       type: "GET_REPOS",
@@ -120,6 +122,7 @@ export const GithubProvider = ({ children }: IChildren) => {
         users: state.users,
         loading: state.loading,
         user: state.user,
+        repos:state.repos,
         fetchUsers,
         searchUsers,
         getSingleUser,

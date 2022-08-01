@@ -16,6 +16,7 @@ export interface IGithubContext {
   users: Array<object>
   user: any
   loading: boolean
+  repos:Array<object>
   fetchUsers: () => void
   searchUsers: (text: string) => any
   getSingleUser: (login: string) => any
@@ -27,4 +28,8 @@ export interface IGithubContext {
 export interface IAlertContext {
   alert: any
   setAlert: (msg: string, type: string) => void
+}
+
+export interface IRepoItem{
+  repo:any
 }
